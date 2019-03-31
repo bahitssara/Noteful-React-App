@@ -1,0 +1,17 @@
+.notes {
+    display: inline-block;
+    width: 59%;
+    border: 1px grey solid;
+}
+
+.notes-list {
+    list-style-type: none;
+    padding: 40px;
+}
+
+.notes-li {
+    border: 1px grey solid;
+    width: 100%;
+    margin-bottom: 5px;
+}
+

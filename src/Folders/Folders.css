@@ -1,0 +1,19 @@
+
+.folders{
+    display: inline-block;
+    width: 40%;
+    border: 1px grey solid;
+}
+
+.folder-list {
+    list-style-type: none;
+    margin-right: 25px;
+
+}
+
+.folder-li {
+    border: 1px grey solid;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    text-align: center;
+}
