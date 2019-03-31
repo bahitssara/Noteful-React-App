@@ -1,22 +1,22 @@
 import React from 'react'
 import './Folders.css'
+import FolderFormat from './FolderFormat'
 
-class Folders extends React.Component{
-    render(){
+export default function Folders(props){
         return(
             <div className='folders'>
                 <ul className='folder-list'>
-                    <li className='folder-li'>
-                        FOLDER
+                    {props.folders.map(folder => 
+                        <li key={folder.id}>
+                        <FolderFormat
+                            id={folder.id}
+                            name={folder.name}/>
                     </li>
-                    <li className='folder-li'>
-                        FOLDER 2
-                    </li>
+                    )}
                 </ul>
                 <button className='add-folder'>Add Folder</button>
             </div>
         )
     }
-}
 
-export default Folders
+

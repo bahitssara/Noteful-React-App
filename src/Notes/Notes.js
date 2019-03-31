@@ -2,7 +2,7 @@ import React from 'react'
 import './Notes.css'
 import NoteFormat from './NoteFormat';
 
-
+//Displays all notes when file isn't chosen//
 export default function Notes(props){
         //ADD AN ADD NOTE BUTTON(AS A COMPONENT)
         return(
@@ -22,5 +22,8 @@ export default function Notes(props){
             </div>
         )
     
+}
+Notes.defaultProps = {
+    notes: [],
 }
 

@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import {Link} from 'react-router-dom'
 import './dummyStore'
 import dummyStore from './dummyStore';
 import Notes from './Notes/Notes'
+import Folders from './Folders/Folders';
+
 
 
 class App extends Component {
@@ -26,11 +29,13 @@ class App extends Component {
         </nav>
         <header className='app-header'>
           <h1>
-            <a href=''>Noteful</a>
+            <Link to='/'>Noteful</Link>
           </h1>
         </header>
         <main className='main-app'>
+        <Folders folders={this.state.folders}/>
         <Notes notes={this.state.notes}/>
+        
         </main>
        
       </div>
