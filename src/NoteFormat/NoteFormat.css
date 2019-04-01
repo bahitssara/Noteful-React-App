@@ -1,0 +1,10 @@
+
+
+.note-format {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    border: 1px grey solid;
+    padding: 10px;
+    margin-bottom: 5px;
+}

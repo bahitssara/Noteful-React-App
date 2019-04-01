@@ -3,36 +3,36 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
-a {
-    color: black;
-}
-
-a:hover {
-    color: grey;
-    cursor: pointer;
-}
-
 a:visited {
     color: purple;
 }
 
 .folders{
-    display:inline-block;
+    margin-top: 5px;
+    display:flex;
     width: 30%;
     height:500px;
-    border: 1px grey solid;
+    border: 3px grey solid;
     float: left;
+    margin-left:5px;
+    margin-right: 5px;
 }
 
 .folder-list {
-    list-style-type: none;
-    margin-right: 25px;
-
-}
-
-.folder-li {
-    border: 1px grey solid;
     margin-bottom: 5px;
     margin-top: 5px;
     text-align: center;
+}
+
+.add-folder-container {
+ 
+}
+
+a { 
+    color:black;
+}
+
+a:hover {
+    color: grey;
+    cursor: pointer;
 }
