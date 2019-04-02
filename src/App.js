@@ -19,7 +19,7 @@ class App extends Component {
   };
 
   componentDidMount() {
-    setTimeout(() => this.setState(dummyStore), 600)
+    this.setState(dummyStore)
   }
 
 
