@@ -1,13 +1,18 @@
 import React from 'react'
+import { Component } from 'react'
 import { Link } from 'react-router-dom'
 import './Folders.css'
 import FolderFormat from '../FolderFormat/FolderFormat'
+import NotefulContext from '../NotefulContext';
 
-export default function Folders(props){
+class Folders extends Component{
+    static contextType = NotefulContext;
+    render(){
+        const { folders=[] } = this.context
         return(
             <div className='folders'>
                 <ul className='folder-list'>
-                    {props.folders.map(folder => 
+                    {folders.map(folder => 
                         <li key={folder.id} className='folder-li'>
                         <FolderFormat
                             id={folder.id}
@@ -15,14 +20,16 @@ export default function Folders(props){
                         </li>
                     )}
                 </ul>
-                <div class ='add folder-container'>
+                <div className ='add folder-container'>
                     <Link to='/add-folder'>
                         Add Folder
                     </Link>
                 </div>
             </div>
         )
-    }
+    }   
+}
 
+export default Folders
     
 

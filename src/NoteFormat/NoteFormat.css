@@ -5,6 +5,7 @@
     flex-direction: column;
     align-content: center;
     border: 1px grey solid;
+    border-radius: 4px;
     padding: 10px;
     margin-bottom: 5px;
 }

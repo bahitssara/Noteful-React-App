@@ -1,7 +1,13 @@
-.folder-name {
+.folder-format {
     border: 1px grey solid;
-    padding: 40px;
-    
+    margin-top: 30px;
+    border-radius: 4px;
+
+}
+
+.folder-name {
+    padding: 35px;
+    font-size: 20px;
 }
 
 .active {

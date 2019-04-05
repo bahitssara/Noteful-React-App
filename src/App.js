@@ -8,6 +8,7 @@ import FolderAddForm from './FolderAddForm/FolderAddForm';
 import NoteAddForm from './NoteAddFormat/NoteAddForm';
 import './App.css'
 import NoteMain from './NoteMain/NoteMain';
+import NotefulContext from './NotefulContext'
 
 
 
@@ -18,12 +19,20 @@ class App extends Component {
     folders: [],
   };
 
+
   componentDidMount() {
     this.setState(dummyStore)
   }
 
 
   render() {
+    const contextValue = {
+      notes: this.state.notes,
+      folders: this.state.folders,
+      deleteNote: this.deleteNote,
+      deleteFolder: this.deleteFolder,
+    }
+
     console.log(this.state.notes)
 
     return (
@@ -34,63 +43,60 @@ class App extends Component {
           </h1>
         </header>
         <main className='main-app'>
-        <Route 
-            exact
-            path='/'  
-            render={() => {
-              return (
-                <>
-                  <Folders folders={this.state.folders}/>
-                  <Notes notes={this.state.notes}/>
-                </>
-                )
+          <NotefulContext.Provider value={contextValue}>
+            <Route 
+                exact
+                path='/'  
+                component={Folders}
+              />
+              <Route
+                exact
+                path='/'
+                component={Notes}
+              />
+              <Route
+                path='/folder-content/:clickedFolder'
+                render={({ match }) => {
+                  const displayNotes = this.state.notes.filter(note => {
+                  return note.folderId === match.params.clickedFolder
+                  })
+                  return(
+                    <>
+                      <Folders folders={this.state.folders}/>
+                      <Notes 
+                      notes={ displayNotes }
+                    />
+                    </>
+                  )
+                }}
+            />
+              
+              <Route
+                exact
+                path='/note/:noteId'      
+                render={({ match }) => {
+                  const findNote = this.state.notes.find(note => {
+                    return note.id === match.params.noteId
+                  })
+                  return (
+                    <NoteMain 
+                      note={ findNote }
+                      folders={this.state.folders}
+                    />
+                  )
+                }      
               }
-            }
-          />
-          <Route
-            path='/folder-content/:clickedFolder'
-            render={({ match }) => {
-              const displayNotes = this.state.notes.filter(note => {
-               return note.folderId === match.params.clickedFolder
-              })
-              return(
-                <>
-                  <Folders folders={this.state.folders}/>
-                  <Notes 
-                  notes={ displayNotes }
-                />
-                </>
-              )
-            }}
-        />
-          
-          <Route
-            exact
-            path='/note/:noteId'      
-            render={({ match }) => {
-              const findNote = this.state.notes.find(note => {
-                return note.id === match.params.noteId
-              })
-              return (
-                <NoteMain 
-                  note={ findNote }
-                  folders={this.state.folders}
-                />
-              )
-            }      
-          }
-        />
+            />
 
-        <Route 
-            path='/add-folder' exact 
-            component={FolderAddForm}/>
-          <Route 
-            path='/add-note' exact 
-            component={NoteAddForm} />
+            <Route 
+                path='/add-folder' exact 
+                component={FolderAddForm}/>
+              <Route 
+                path='/add-note' exact 
+                component={NoteAddForm} />
 
-        
-        </main>
-       
+            </NotefulContext.Provider>
+          </main>
       </div>
     );
   }

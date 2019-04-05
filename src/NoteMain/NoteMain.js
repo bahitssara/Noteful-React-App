@@ -7,7 +7,9 @@ import './NoteMain.css'
 export default function NoteMain(props) {
     const findFolder = props.folders.find(folder => {
         return folder.id === props.note.folderId
-    })
+    }) 
+
+    console.log(findFolder)
 
     return(
         <div className='note-main-container'>

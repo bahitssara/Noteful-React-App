@@ -8,6 +8,6 @@ export default function FolderFormat(props) {
                 <h2 className='folder-name'>
                     <NavLink to={`/folder-content/${props.id}`}>{props.name}</NavLink>
                 </h2>
-        </div>
+        </div> 
     )
 }
