@@ -27,15 +27,16 @@ class App extends Component {
 
   render() {
     const contextValue = {
-      notes: this.state.notes,
+      displayedNotes: this.state.notes,
       folders: this.state.folders,
       deleteNote: this.deleteNote,
       deleteFolder: this.deleteFolder,
     }
 
-    console.log(this.state.notes)
+    console.log(this.deleteNote, this.deleteFolder)
 
     return (
+      <NotefulContext.Provider value={contextValue}>
       <div className="App">
         <header className='app-header'>
           <h1>
@@ -43,9 +44,7 @@ class App extends Component {
           </h1>
         </header>
         <main className='main-app'>
-          <NotefulContext.Provider value={contextValue}>
             <Route 
-                exact
                 path='/'  
                 component={Folders}
               />
@@ -54,23 +53,13 @@ class App extends Component {
                 path='/'
                 component={Notes}
               />
+
               <Route
                 path='/folder-content/:clickedFolder'
-                render={({ match }) => {
-                  const displayNotes = this.state.notes.filter(note => {
-                  return note.folderId === match.params.clickedFolder
-                  })
-                  return(
-                    <>
-                      <Folders folders={this.state.folders}/>
-                      <Notes 
-                      notes={ displayNotes }
-                    />
-                    </>
-                  )
-                }}
+                component={Notes} 
             />
-              
+             
+
               <Route
                 exact
                 path='/note/:noteId'      
@@ -95,9 +84,10 @@ class App extends Component {
                 path='/add-note' exact 
                 component={NoteAddForm} />
 
-            </NotefulContext.Provider>
           </main>
       </div>
+    </NotefulContext.Provider>
+
     );
   }
 }
