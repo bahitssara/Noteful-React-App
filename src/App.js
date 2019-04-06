@@ -63,18 +63,7 @@ class App extends Component {
               <Route
                 exact
                 path='/note/:noteId'      
-                render={({ match }) => {
-                  const findNote = this.state.notes.find(note => {
-                    return note.id === match.params.noteId
-                  })
-                  return (
-                    <NoteMain 
-                      note={ findNote }
-                      folders={this.state.folders}
-                    />
-                  )
-                }      
-              }
+                component={NoteMain}
             />
 
             <Route 

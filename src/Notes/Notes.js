@@ -18,7 +18,6 @@ class Notes extends Component {
         const { displayedNotes } = this.context
         const { clickedFolder } = this.props.match.params
         const getNotesForFolder = getNotes(displayedNotes, clickedFolder)
-        debugger;
         const noteFormat = getNotesForFolder.map(note =>
             <NoteFormat
             key={note.id}
