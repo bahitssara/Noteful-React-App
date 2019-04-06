@@ -45,6 +45,7 @@ class App extends Component {
         </header>
         <main className='main-app'>
             <Route 
+                exact
                 path='/'  
                 component={Folders}
               />
@@ -54,24 +55,32 @@ class App extends Component {
                 component={Notes}
               />
 
+              <Route  
+                path='/folder-content'
+                component={Folders}
+              />
+
               <Route
                 path='/folder-content/:clickedFolder'
                 component={Notes} 
-            />
+              />
              
-
               <Route
                 exact
                 path='/note/:noteId'      
                 component={NoteMain}
-            />
+              />
 
-            <Route 
-                path='/add-folder' exact 
-                component={FolderAddForm}/>
               <Route 
-                path='/add-note' exact 
-                component={NoteAddForm} />
+                path='/add-folder' 
+                exact 
+                component={FolderAddForm}
+              />
+                <Route 
+                path='/add-note' 
+                exact 
+                component={NoteAddForm}
+              />
 
           </main>
       </div>

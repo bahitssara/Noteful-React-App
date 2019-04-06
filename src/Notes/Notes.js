@@ -5,6 +5,7 @@ import NoteFormat from '../NoteFormat/NoteFormat';
 import { Link } from 'react-router-dom/cjs/react-router-dom';
 import NotefulContext from '../NotefulContext';
 import { getNotes } from '../note-filters' 
+import Folders from '../Folders/Folders'
 
 //Displays all notes when file isn't chosen//
 class Notes extends Component {
