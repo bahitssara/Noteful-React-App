@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {Link, Route} from 'react-router-dom'
 import './dummyStore'
-import dummyStore from './dummyStore';
 import Notes from './Notes/Notes'
 import Folders from './Folders/Folders';
 import FolderAddForm from './FolderAddForm/FolderAddForm';
@@ -15,15 +14,39 @@ import NotefulContext from './NotefulContext'
 class App extends Component {
 
   state = {
-    notes: [],
+    displayedNotes: [],
     folders: [],
   };
 
-
   componentDidMount() {
-    this.setState(dummyStore)
-  }
+    debugger
+    Promise.all([
+      fetch('http://localhost:9090/notes'),
+      fetch('http://localhost:9090/folders'),
 
+    ])
+      .then(([noteRes, folderRes]) => {
+        if(!folderRes.ok)
+          return folderRes.json().then(e => Promise.reject(e))
+        if(!noteRes.ok) 
+          return noteRes.json().then(e => Promise.reject(e))
+
+        return Promise.all([
+          noteRes.json(),
+          folderRes.json(),
+        ])
+      })
+      .then(([displayedNotes,folders]) => {
+        this.setState({folders})
+        this.setState({displayedNotes})
+
+        console.log({displayedNotes, folders})
+      })
+      .catch(error => {
+        console.error({error})
+      })
+
+    }
 
   render() {
     const contextValue = {
@@ -33,7 +56,6 @@ class App extends Component {
       deleteFolder: this.deleteFolder,
     }
 
-    console.log(this.deleteNote, this.deleteFolder)
 
     return (
       <NotefulContext.Provider value={contextValue}>
