@@ -10,3 +10,8 @@ export const getNotes = (notes=[], folderId) => (
     ? notes 
     : notes.filter(note => note.folderId === folderId)
 )
+
+/*export const findFolders =
+            this.context.folders.find(folder => {
+                return folder.id === filteredNote.folderId
+            }) */

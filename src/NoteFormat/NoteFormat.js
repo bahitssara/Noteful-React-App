@@ -10,6 +10,8 @@ class NoteFormat extends React.Component {
 
       }
 
+
+      
     
     static contextType = NotefulContext;
 
