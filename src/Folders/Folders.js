@@ -9,6 +9,7 @@ class Folders extends Component{
     static contextType = NotefulContext;
     render(){
         const { folders=[] } = this.context
+
         return(
             <div className='folders'>
                 <ul className='folder-list'>

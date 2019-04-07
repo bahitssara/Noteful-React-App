@@ -14,43 +14,47 @@ import NotefulContext from './NotefulContext'
 class App extends Component {
 
   state = {
-    displayedNotes: [],
     folders: [],
+    notes: [],
+
   };
 
   componentDidMount() {
-    debugger
     Promise.all([
-      fetch('http://localhost:9090/notes'),
       fetch('http://localhost:9090/folders'),
+      fetch('http://localhost:9090/notes'),
+
 
     ])
-      .then(([noteRes, folderRes]) => {
+      .then(([folderRes, noteRes]) => {
         if(!folderRes.ok)
           return folderRes.json().then(e => Promise.reject(e))
         if(!noteRes.ok) 
           return noteRes.json().then(e => Promise.reject(e))
 
         return Promise.all([
-          noteRes.json(),
           folderRes.json(),
+          noteRes.json(),
         ])
       })
-      .then(([displayedNotes,folders]) => {
-        this.setState({folders})
-        this.setState({displayedNotes})
-
-        console.log({displayedNotes, folders})
+      .then(([folders, notes]) => {
+        this.setState({
+          folders,
+        })
+        this.setState({
+          notes,
+        })
+        console.log(notes)
       })
+      
       .catch(error => {
         console.error({error})
       })
-
     }
 
   render() {
     const contextValue = {
-      displayedNotes: this.state.notes,
+      notes: this.state.notes,
       folders: this.state.folders,
       deleteNote: this.deleteNote,
       deleteFolder: this.deleteFolder,

@@ -15,9 +15,9 @@ class Notes extends Component {
       }
     static contextType = NotefulContext;
     render(){
-        const { displayedNotes } = this.context
+        const { notes } = this.context
         const { clickedFolder } = this.props.match.params
-        const getNotesForFolder = getNotes(displayedNotes, clickedFolder)
+        const getNotesForFolder = getNotes(notes, clickedFolder)
         const noteFormat = getNotesForFolder.map(note =>
             <NoteFormat
             key={note.id}

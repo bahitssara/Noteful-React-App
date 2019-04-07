@@ -15,9 +15,9 @@ class NoteMain extends React.Component {
 
     static contextType = NotefulContext
         render(){
-            const { displayedNotes }= this.context
+            const { notes }= this.context
             const { noteId } = this.props.match.params
-            const filteredNote = findNote(displayedNotes, noteId) || { content: ''}
+            const filteredNote = findNote(notes, noteId) || { content: ''}
             const findFolder =
             this.context.folders.find(folder => {
                 return folder.id === filteredNote.folderId
