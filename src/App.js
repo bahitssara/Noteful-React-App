@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {Link, Route} from 'react-router-dom'
-import './dummyStore'
 import Notes from './Notes/Notes'
 import Folders from './Folders/Folders';
 import FolderAddForm from './FolderAddForm/FolderAddForm';
@@ -12,7 +11,7 @@ import NotefulContext from './NotefulContext'
 
 
 class App extends Component {
-
+  
   state = {
     folders: [],
     notes: [],
@@ -44,7 +43,6 @@ class App extends Component {
         this.setState({
           notes,
         })
-        console.log(notes)
       })
       
       .catch(error => {
@@ -52,12 +50,18 @@ class App extends Component {
       })
     }
 
+    handleDeleteNote= noteId => {
+      this.setState({
+        notes: this.state.notes.filter(note => note.id !== noteId)
+      })
+    }
+
   render() {
     const contextValue = {
       notes: this.state.notes,
       folders: this.state.folders,
-      deleteNote: this.deleteNote,
-      deleteFolder: this.deleteFolder,
+      deleteNote: this.handleDeleteNote,
+
     }
 
 

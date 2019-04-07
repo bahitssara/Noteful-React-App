@@ -2,23 +2,65 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import { format } from 'util';
 import './NoteFormat.css'
+import NotefulContext from '../NotefulContext'
 
+class NoteFormat extends React.Component {
+    static defaultProps = {
+        onDeleteNote: () => {},
 
-export default function NoteFormat(props) {
-    return(
-        <li className='note-format'>
+      }
+
+    
+    static contextType = NotefulContext;
+
+    handleClickDelete = e => {
+        e.preventDefault();
+        const noteId= this.props.id
+
+        fetch(`http://localhost:9090/notes/${noteId}`,{
+        method: 'DELETE',
+        headers: {
+            'content-type': 'application/json'
+        },
+    })
+        .then(res => {
+            if(!res.ok)
+                return res.json().then(e => Promise.reject(e))
+            return res.json()
+        })
+        .then(() => {
+            this.context.deleteNote(noteId)
+            this.props.onDeleteNote(noteId)
+        })
+        .catch(error => {
+            console.error({error})
+        })
+    }
+
+    render(){
+        const { name, id, modified } = this.props
+        return(
+            <li className='note-format'>
             <h2 className='note-name'>
-                <Link to={`/note/${props.id}`}>
-                {props.name}
+                <Link to={`/note/${id}`}>
+                {name}
                 </Link>
             </h2>
-            <button className='delete-button'>Remove Note</button>
+            <button 
+                className='delete-button'
+                type='button'
+                onClick={this.handleClickDelete}
+                >Remove Note</button>
             <div className='note-edits'>
                 <p>Modified {' '}</p>
                 <span className='date-modified'>
-                    {format(props.modified)}
+                    {format(modified)}
                 </span>
             </div>
         </li>
-    )
+    )}
+
 }
+
+export default NoteFormat
+
