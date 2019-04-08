@@ -18,6 +18,7 @@ class FolderAddForm extends React.Component {
         });
     }
 
+
     handleFolderSubmit = e => {
         e.preventDefault();
         const folder = (({id, name}) => ({id, name}))(this.state);
@@ -40,6 +41,8 @@ class FolderAddForm extends React.Component {
                 name: '',
             });
             this.context.addFolder(folder);
+            this.props.history.push('/')
+
         })
         .catch(error => {
             console.error({error})
