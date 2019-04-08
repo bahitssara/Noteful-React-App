@@ -28,9 +28,22 @@ class NoteAddForm extends React.Component {
     });
   }
 
+  addFolderId(folderId) {
+    this.setState({
+      folderId
+    })
+  }
+
+  addModified(modified) {
+    this.setState({
+      modified
+    })
+  }
+   
+
   handleNoteSubmit = e => {
     e.preventDefault();
-    const note = (({content,id, name}) => ({content,id, name}))(this.state);
+    const note = (({content, folderId, id, modified, name}) => ({content, folderId, id, modified, name}))(this.state);
 
     fetch(`http://localhost:9090/notes`,{
         method: 'POST',
@@ -48,9 +61,10 @@ class NoteAddForm extends React.Component {
         .then(() => {
             this.setState({
                 content: '',
+                folderId: '',
+                modified: '',
                 id: '',
                 name: '',
-                
             });
             this.context.addNote(note);
             this.props.history.push('/')
@@ -64,6 +78,7 @@ class NoteAddForm extends React.Component {
   
 
       render() {
+
         return ( 
           <section className='AddNote'>
             <h2>Create a note</h2>
@@ -72,10 +87,10 @@ class NoteAddForm extends React.Component {
                 <label htmlFor='note-folder-input'>
                   Choose Folder:
                 </label>
-                <select type='select' id='note-folder-input'>
+                <select type='select' id='note-folder-input' value={this.state.folderId} onChange={e => this.addFolderId(e.target.value)}>
                   <option>Choose Folder:</option>
                   {this.context.folders.map(folder =>
-                    <option key={folder.id}>{folder.name}</option>
+                    <option key={folder.id} value={folder.id}>{folder.name}</option>
                     )}
                 </select>
               </div>

@@ -30,9 +30,9 @@ class Notes extends Component {
         return(
             <div className='notes'>
                 <ul className='notes-list'>
+                <Link to='/add-note'><i className="fas fa-plus"></i></Link>
                     { noteFormat }
                 </ul>  
-                <Link to='/add-note'>Add Note</Link>
             </div>
             )
         }

@@ -20,17 +20,34 @@ a:visited {
     overflow: auto;
 }
 
+a {
+    color:black;
+}
+
+a:hover {
+    color: purple;
+}
+
+a:visited {
+    color:grey;
+}
+
+
 .folder-list {
     margin-bottom: 5px;
     margin-top: 5px;
     text-align: center;
 }
 
-a { 
-    color:black;
+.fa-folder-plus { 
+    color:green;
+    font-size: 40px;
+    transition: transform .2s;
 }
 
-a:hover {
-    color: grey;
+.fa-folder-plus:hover {
     cursor: pointer;
+    transform: scale(1.5);
 }
+
+

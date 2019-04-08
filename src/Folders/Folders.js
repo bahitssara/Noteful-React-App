@@ -13,19 +13,17 @@ class Folders extends Component{
         return(
             <div className='folders'>
                 <ul className='folder-list'>
-                    {folders.map(folder => 
-                        <li key={folder.id} className='folder-li'>
-                        <FolderFormat
-                            id={folder.id}
-                            name={folder.name}/>
-                        </li>
-                    )}
-                </ul>
-                <div className ='add folder-container'>
                     <Link to='/add-folder'>
-                        Add Folder
+                    <i className="fas fa-folder-plus"></i>
                     </Link>
-                </div>
+                        {folders.map(folder => 
+                            <li key={folder.id} className='folder-li'>
+                            <FolderFormat
+                                id={folder.id}
+                                name={folder.name}/>
+                            </li>
+                        )}
+                </ul>
             </div>
         )
     }   

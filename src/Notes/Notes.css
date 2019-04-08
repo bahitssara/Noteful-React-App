@@ -1,7 +1,7 @@
 .notes {
     margin-top:7px;
     display: flex;
-    width: 60%;
+    width: 65%;
     border: 2px grey solid;
     border-radius: 4px;
     height: 500px;
@@ -23,5 +23,18 @@ button {
 .notes-li {
     border: 1px grey solid;
     width: 100%;
+
+}
+
+.fa-plus {
+    font-size: 40px;
+    color: green;
+    transition: transform .2s;
+    padding-bottom: 50px;
+}
+
+.fa-plus:hover {
+    cursor: pointer;
+    transform: scale(1.5);
 }
 
