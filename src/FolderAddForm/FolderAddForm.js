@@ -5,6 +5,7 @@ class FolderAddForm extends React.Component {
     constructor(props){
         super(props)
         this.state = {
+            id:'',
             name: '',
         };
     }
@@ -19,9 +20,10 @@ class FolderAddForm extends React.Component {
 
     handleFolderSubmit = e => {
         e.preventDefault();
-        const folder = (({name}) => ({name}))(this.state);
+        const folder = (({id, name}) => ({id, name}))(this.state);
         fetch(`http://localhost:9090/folders`,{
         method: 'POST',
+        body:JSON.stringify(folder),
         headers: {
             'content-type': 'application/json'
         },
@@ -32,10 +34,11 @@ class FolderAddForm extends React.Component {
              }
               return res.json();
         })
-        .then(data => {
+        .then(() => {
             this.setState({
+                id: '',
                 name: '',
-            })
+            });
             this.context.addFolder(folder);
         })
         .catch(error => {
