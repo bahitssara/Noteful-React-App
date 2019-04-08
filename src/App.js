@@ -63,12 +63,20 @@ class App extends Component {
       })
     }
 
+    handleAddNote = note => {
+      this.setState({
+        notes: 
+        [...this.state.notes, note]
+      })
+    }
+
   render() {
     const contextValue = {
       notes: this.state.notes,
       folders: this.state.folders,
       deleteNote: this.handleDeleteNote,
       addFolder: this.handleAddFolder,
+      addNote: this.handleAddNote,
       
     }
 
