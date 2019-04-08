@@ -9,16 +9,13 @@ class NoteFormat extends React.Component {
         onDeleteNote: () => {},
 
       }
-
-
       
-    
     static contextType = NotefulContext;
 
     handleClickDelete = e => {
         e.preventDefault();
         const noteId= this.props.id
-
+ 
         fetch(`http://localhost:9090/notes/${noteId}`,{
         method: 'DELETE',
         headers: {

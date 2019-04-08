@@ -56,12 +56,20 @@ class App extends Component {
       })
     }
 
+    handleAddFolder = folder => {
+      this.setState({
+        folders: 
+        [...this.state.folders, folder]
+      })
+    }
+
   render() {
     const contextValue = {
       notes: this.state.notes,
       folders: this.state.folders,
       deleteNote: this.handleDeleteNote,
-
+      addFolder: this.handleAddFolder,
+      
     }
 
 

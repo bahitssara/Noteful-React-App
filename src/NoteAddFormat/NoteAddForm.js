@@ -6,6 +6,15 @@ class NoteAddForm extends React.Component {
           <section className='AddNote'>
             <h2>Create a note</h2>
             <form>
+            <div className='field'>
+                <label htmlFor='note-folder-input'>
+                  Choose Folder:
+                </label>
+                <select type='select' id='note-folder-input' placeholder='choose folder:'>
+                  <option>Choose Folder:</option>
+                  <option>Folder names</option>
+                </select>
+              </div>
               <div className='field'>
                 <label htmlFor='note-name-input'>
                   Name
