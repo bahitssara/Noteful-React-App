@@ -1,5 +1,6 @@
 import React from 'react'
 import NotefulContext from '../NotefulContext'
+import ValidationError from '../ValidationError';
 
 class FolderAddForm extends React.Component {
     constructor(props){
@@ -7,15 +8,19 @@ class FolderAddForm extends React.Component {
         this.state = {
             id:'',
             name: '',
+            nameValid: false,
+            formValid: false,
+            validationMessage: {
+                name: '',
+            }
         };
     }
 
     static contextType = NotefulContext;
 
     addFolderName(name) {
-        this.setState({
-            name
-        });
+        this.setState
+        ({name}, () => {this.validateName(name)});
     }
 
 
@@ -49,6 +54,36 @@ class FolderAddForm extends React.Component {
         })
     }
 
+    validateName(fieldValue) {
+        const fieldErrors = {...this.state.validationMessage}
+        let hasError = false;
+
+        fieldValue = fieldValue.trim();
+        if(fieldValue.length === 0) {
+            fieldErrors.name = 'Folder name is required';
+            hasError = true;
+        } else {
+            if(fieldValue.length < 3) {
+                fieldErrors.name = 'Folder name must be at least 3 characters long';
+                hasError = true;
+            } else {
+                fieldErrors.name = '';
+                hasError = false;
+            }
+        }
+
+        this.setState({
+            validationMessage: fieldErrors,
+            nameValid: !hasError
+        }, this.formValid);
+    }
+
+    formValid(){
+        this.setState({
+            formValid: this.state.nameValid
+        });
+    }
+
     render() {
         return(
             <section className='add-folder' onSubmit={e => this.handleFolderSubmit(e)}>
@@ -58,7 +93,8 @@ class FolderAddForm extends React.Component {
                         Folder Name
                     </label>
                     <input type='text' id='add-folder-input' value={this.state.name} onChange={e => this.addFolderName(e.target.value)}/>
-                    <button type='submit'>
+                    <ValidationError hasError={!this.state.nameValid} message={this.state.validationMessage.name}/>
+                    <button type='submit' disabled={!this.state.formValid}>
                         Add 
                     </button>
                 </form>
