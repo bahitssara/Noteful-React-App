@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import { format } from 'util';
 import './NoteFormat.css'
 import NotefulContext from '../NotefulContext'
+import PropTypes from 'prop-types'
 
 class NoteFormat extends React.Component {
     static defaultProps = {
@@ -60,6 +61,14 @@ class NoteFormat extends React.Component {
     )}
 
 }
+
+NoteFormat.propTypes = {
+    id: PropTypes.string,
+    name: PropTypes.string,
+    modified: PropTypes.string,
+    onDeleteNote: PropTypes.func,
+}
+
 
 export default NoteFormat
 

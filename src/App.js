@@ -127,7 +127,6 @@ class App extends Component {
                 exact 
                 component={NoteAddForm}
               />
-
           </main>
       </div>
     </NotefulContext.Provider>
