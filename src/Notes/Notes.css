@@ -44,6 +44,6 @@ button {
 
 .fa-plus:hover {
     cursor: pointer;
-    transform: scale(1.5);
+    transform: scale(1.0);
 }
 

@@ -30,21 +30,21 @@ class NoteMain extends React.Component {
             
             return(
                 <div className='note-main-container'>
-                    <h2 className='folder-name'>{findFolders.name}</h2>
-                    <Link to='/' id='go-back'>Go Back</Link>
-                        <section className='note-main'>
-                            <NoteFormat
-                                id={filteredNote.id}
-                                name={filteredNote.name}
-                                modified={filteredNote.modified}
-                                onDeleteNote={this.deleteRedirect}
-                                />
-                            <div className='note-content'>
-                                {filteredNote.content.split(/\n \r|\n/).map((cont, i) =>
-                                    <p key={i}>{cont}</p>
-                                    )}
-                            </div>
-                    </section>
+                    <h2 className='folder-name-main'>{findFolders.name}</h2>
+                        <Link to='/' id='go-back'><i className="fas fa-arrow-left"> Go back</i></Link>
+                            <section className='note-main'>
+                                <NoteFormat
+                                    id={filteredNote.id}
+                                    name={filteredNote.name}
+                                    modified={filteredNote.modified}
+                                    onDeleteNote={this.deleteRedirect}
+                                    />
+                                    <div className='note-content'>
+                                        {filteredNote.content.split(/\n \r|\n/).map((cont, i) =>
+                                            <p key={i}>{cont}</p>
+                                            )}
+                                    </div>
+                        </section>
                 </div>
                 
             )

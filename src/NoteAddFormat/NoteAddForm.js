@@ -11,7 +11,7 @@ class NoteAddForm extends React.Component {
       content: '',
       folderId: '',
       id:'',
-      modified:'',
+      modified: new Date(),
       name:'',
       nameValid: false,
       contentValid: false,
@@ -138,7 +138,7 @@ class NoteAddForm extends React.Component {
 
       render() {
         return ( 
-          <section className='AddNote'>
+          <section className='add-note'>
             <h2>Create a note</h2>
             <form onSubmit={e => this.handleNoteSubmit(e)}> 
             <div className='field'>

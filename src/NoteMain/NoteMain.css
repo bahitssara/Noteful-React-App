@@ -6,6 +6,15 @@
     float: right;
 }
 
+.fa-arrow-left {
+    font-size: 40px;
+    transition: transform .2s;
+}
+
+.fa-arrow-left:hover {
+    transform: scale(1.5);
+}
+
 #go-back {
     float: left;
     padding-left: 20px
@@ -15,8 +24,10 @@ li{
     list-style-type: none;
 }
 
-.folder-name {
+.folder-name-main {
+    padding-left: 40px;
     display: flex;
     border: none;
     width: 29%;   
+    font-size: 40px;
 }

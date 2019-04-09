@@ -1,7 +1,7 @@
 import React from 'react'
 import NotefulContext from '../NotefulContext'
 import ValidationError from '../ValidationError/ValidationError'
-
+import './FolderAddForm.css'
 class FolderAddForm extends React.Component {
     constructor(props){
         super(props)
@@ -32,7 +32,7 @@ class FolderAddForm extends React.Component {
         headers: {
             'content-type': 'application/json'
         },
-    })
+        })
         .then(res => {
             if(!res.ok){
                 throw new Error('Something went wrong please try again later');
@@ -91,8 +91,8 @@ class FolderAddForm extends React.Component {
                     <label htmlFor='add-folder-input'>
                         Folder Name
                     </label>
-                    <input type='text' id='add-folder-input' value={this.state.name} onChange={e => this.addFolderName(e.target.value)}/>
-                    <ValidationError hasError={!this.state.nameValid} message={this.state.validationMessage.name}/>
+                        <input type='text' id='add-folder-input' value={this.state.name} onChange={e => this.addFolderName(e.target.value)}/>
+                            <ValidationError hasError={!this.state.nameValid} message={this.state.validationMessage.name}/>
                     <button type='submit' disabled={!this.state.formValid}>
                         Add 
                     </button>
