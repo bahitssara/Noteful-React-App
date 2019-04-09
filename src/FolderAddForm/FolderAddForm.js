@@ -1,6 +1,6 @@
 import React from 'react'
 import NotefulContext from '../NotefulContext'
-import ValidationError from '../ValidationError';
+import ValidationError from '../ValidationError/ValidationError'
 
 class FolderAddForm extends React.Component {
     constructor(props){
@@ -19,8 +19,7 @@ class FolderAddForm extends React.Component {
     static contextType = NotefulContext;
 
     addFolderName(name) {
-        this.setState
-        ({name}, () => {this.validateName(name)});
+        this.setState({name}, () => {this.validateName(name)});
     }
 
 
