@@ -11,3 +11,7 @@ header {
     padding-top: 20px;
     padding-bottom: 20px;
 }
+
+.main-app {
+    display: flex;
+}

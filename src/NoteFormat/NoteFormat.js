@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import { format } from 'util';
+import { format } from 'date-fns';
 import './NoteFormat.css'
 import NotefulContext from '../NotefulContext'
 import PropTypes from 'prop-types'
@@ -39,6 +39,7 @@ class NoteFormat extends React.Component {
 
     render(){
         const { name, id, modified } = this.props
+        
         return(
             <li className='note-format'>
             <h2 className='note-name'>
@@ -52,9 +53,9 @@ class NoteFormat extends React.Component {
                 onClick={this.handleClickDelete}
                 >Remove Note</button>
             <div className='note-edits'>
-                <p>Modified {' '}</p>
+                <p>Modified: {' '}</p>
                 <span className='date-modified'>
-                    {format(modified)}
+                    {format(modified, 'MM/DD/YYYY')}
                 </span>
             </div>
         </li>

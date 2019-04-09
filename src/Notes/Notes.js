@@ -28,11 +28,13 @@ class Notes extends Component {
         )
         
         return(
-            <div className='notes'>
-                <ul className='notes-list'>
+            <div className='notes-container'>
+                <div className='notes'>
+                    <ul className='notes-list'>
+                        { noteFormat }
+                    </ul>  
+                </div>
                 <Link to='/add-note'><i className="fas fa-plus"></i></Link>
-                    { noteFormat }
-                </ul>  
             </div>
             )
         }

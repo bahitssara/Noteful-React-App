@@ -1,11 +1,18 @@
+.notes-container {
+    display: flex;
+    float: right;
+    flex-direction: column;
+    width: 60%;
+
+}
+
 .notes {
     margin-top:7px;
-    display: flex;
-    width: 65%;
     border: 2px grey solid;
     border-radius: 4px;
     height: 500px;
     overflow: auto;
+  
 }
 
 .notes-list {
@@ -30,7 +37,9 @@ button {
     font-size: 40px;
     color: green;
     transition: transform .2s;
-    padding-bottom: 50px;
+    float: right;
+    margin-right: 38%;
+    width: 30%;
 }
 
 .fa-plus:hover {

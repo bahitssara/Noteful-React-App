@@ -11,20 +11,25 @@ class Folders extends Component{
         const { folders=[] } = this.context
 
         return(
-            <div className='folders'>
-                <ul className='folder-list'>
-                    <Link to='/add-folder'>
-                    <i className="fas fa-folder-plus"></i>
-                    </Link>
-                        {folders.map(folder => 
-                            <li key={folder.id} className='folder-li'>
-                            <FolderFormat
-                                id={folder.id}
-                                name={folder.name}/>
-                            </li>
-                        )}
-                </ul>
+            <div className='container'>
+                <div className='folders'>
+                    <ul className='folder-list'>
+                            {folders.map(folder => 
+                                <li key={folder.id} className='folder-li'>
+                                <FolderFormat
+                                    id={folder.id}
+                                    name={folder.name}/>
+                                </li>
+                            )}
+                        
+                    </ul>
+                </div>
+                <Link to='/add-folder'>
+                        <i className="fas fa-folder-plus"></i>
+                </Link>
             </div>
+
+
         )
     }   
 }

@@ -3,6 +3,7 @@ import NotefulContext from '../NotefulContext'
 import './NoteAddForm.css'
 import ValidationError from '../ValidationError/ValidationError'
 
+
 class NoteAddForm extends React.Component {
   constructor(props){
     super(props)
@@ -43,6 +44,7 @@ class NoteAddForm extends React.Component {
       modified
     })
   }
+
    
 
   handleNoteSubmit = e => {
@@ -134,11 +136,7 @@ class NoteAddForm extends React.Component {
 
     }
 
-    
-  
-
       render() {
-
         return ( 
           <section className='AddNote'>
             <h2>Create a note</h2>
