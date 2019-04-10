@@ -86,7 +86,7 @@ class App extends Component {
       <div className="App">
         <header className='app-header'>
           <h1>
-            <Link to='/'>Noteful</Link>
+              <Link to='/'>Noteful</Link>           
           </h1>
         </header>
         <main className='main-app'>
