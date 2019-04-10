@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import {Link, Route} from 'react-router-dom'
-import Notes from './Notes/Notes'
-import Folders from './Folders/Folders';
-import FolderAddForm from './FolderAddForm/FolderAddForm';
-import NoteAddForm from './NoteAddFormat/NoteAddForm';
+import Notes from '../Notes/Notes'
+import Folders from '../Folders/Folders';
+import FolderAddForm from '../FolderAddForm/FolderAddForm';
+import NoteAddForm from '../NoteAddFormat/NoteAddForm';
 import './App.css'
-import NoteMain from './NoteMain/NoteMain';
-import NotefulContext from './NotefulContext'
+import NoteMain from '../NoteMain/NoteMain';
+import NotefulContext from '../NotefulContext'
 
 
 
