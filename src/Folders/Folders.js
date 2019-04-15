@@ -25,7 +25,7 @@ class Folders extends Component{
                     </ul>
                 </div>
                 <Link to='/add-folder'>
-                        <i className="fas fa-folder-plus"></i>
+                        <i className="fas fa-folder-plus" alt='folder-icon-button'></i>
                 </Link>
             </div>
 

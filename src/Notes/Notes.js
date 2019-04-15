@@ -17,7 +17,7 @@ class Notes extends Component {
     render(){
         const { notes } = this.context
         const { clickedFolder } = this.props.match.params
-        const getNotesForFolder = getNotes(notes, clickedFolder)
+        const getNotesForFolder = getNotes(notes, clickedFolder) 
         const noteFormat = getNotesForFolder.map(note =>
             <NoteFormat
             key={note.id}
@@ -34,7 +34,7 @@ class Notes extends Component {
                         { noteFormat }
                     </ul>  
                 </div>
-                <Link to='/add-note'><i className="fas fa-plus"></i></Link>
+                <Link to='/add-note'><i className="fas fa-plus" alt='plus-sign-button'></i></Link>
             </div>
             )
         }

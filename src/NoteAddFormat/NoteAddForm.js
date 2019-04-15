@@ -68,7 +68,7 @@ class NoteAddForm extends React.Component {
             this.setState({
                 content: '',
                 folderId: '',
-                modified: '',
+                modified: new Date(),
                 id: '',
                 name: '',
             });

@@ -53,7 +53,7 @@ class NoteFormat extends React.Component {
                 onClick={this.handleClickDelete}
                 >Remove Note</button>
             <div className='note-edits'>
-                <p>Modified: {' '}</p>
+                <p>Modified:</p>
                 <span className='date-modified'>
                     {format(modified, 'MM/DD/YYYY')}
                 </span>
@@ -66,7 +66,6 @@ class NoteFormat extends React.Component {
 NoteFormat.propTypes = {
     id: PropTypes.string,
     name: PropTypes.string,
-    modified: PropTypes.string,
     onDeleteNote: PropTypes.func,
 }
 
