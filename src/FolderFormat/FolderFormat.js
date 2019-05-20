@@ -7,13 +7,13 @@ export default function FolderFormat(props) {
     return(
         <div className='folder-format'>
                 <h2 className='folder-name'>
-                    <NavLink to={`/folder-content/${props.id}`}>{props.name}</NavLink>
+                    <NavLink to={`/folder-content/${props.id}`}>{props.title}</NavLink>
                 </h2>
         </div> 
     )
 }
 
 FolderFormat.propTypes = {
-    id: PropTypes.string,
-    name: PropTypes.string
+    id: PropTypes.number,
+    title: PropTypes.string
 }

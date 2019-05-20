@@ -17,7 +17,7 @@ class NoteFormat extends React.Component {
         e.preventDefault();
         const noteId= this.props.id
  
-        fetch(`http://localhost:9090/notes/${noteId}`,{
+        fetch(`http://localhost:8000/notes/${noteId}`,{
         method: 'DELETE',
         headers: {
             'content-type': 'application/json'
@@ -38,13 +38,13 @@ class NoteFormat extends React.Component {
     }
 
     render(){
-        const { name, id, modified } = this.props
+        const { note_title, id, date_published } = this.props
         
         return(
             <li className='note-format'>
             <h2 className='note-name'>
-                <Link to={`/note/${id}`}>
-                {name}
+                <Link to={`/notes/${id}`}>
+                {note_title}
                 </Link>
             </h2>
             <button 
@@ -55,7 +55,7 @@ class NoteFormat extends React.Component {
             <div className='note-edits'>
                 <p>Modified:</p>
                 <span className='date-modified'>
-                    {format(modified, 'MM/DD/YYYY')}
+                    {format(date_published, 'MM/DD/YYYY')}
                 </span>
             </div>
         </li>
@@ -64,7 +64,7 @@ class NoteFormat extends React.Component {
 }
 
 NoteFormat.propTypes = {
-    id: PropTypes.string,
+    id: PropTypes.number,
     name: PropTypes.string,
     onDeleteNote: PropTypes.func,
 }

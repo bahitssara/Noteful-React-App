@@ -17,16 +17,16 @@ class Notes extends Component {
     render(){
         const { notes } = this.context
         const { clickedFolder } = this.props.match.params
-        const getNotesForFolder = getNotes(notes, clickedFolder) 
+        const getNotesForFolder = getNotes(notes, clickedFolder)
         const noteFormat = getNotesForFolder.map(note =>
             <NoteFormat
             key={note.id}
             id={note.id}
-            name={note.name}
-            modified={note.modified}
+            note_title={note.note_title}
+            date_published={note.date_published}
             />
         )
-        
+        console.log(noteFormat)
         return(
             <div className='notes-container'>
                 <div className='notes'>

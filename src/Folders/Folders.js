@@ -18,7 +18,7 @@ class Folders extends Component{
                                 <li key={folder.id} className='folder-li'>
                                 <FolderFormat
                                     id={folder.id}
-                                    name={folder.name}/>
+                                    title={folder.title}/>
                                 </li>
                             )}
                         

@@ -9,10 +9,10 @@ class NoteAddForm extends React.Component {
     super(props)
     this.state = {
       content: '',
-      folderId: '',
+      folder: parseInt(),
       id:'',
-      modified: new Date(),
-      name:'',
+      date_published: new Date(),
+      note_title:'',
       nameValid: false,
       contentValid: false,
       validationMessages: {
@@ -22,6 +22,7 @@ class NoteAddForm extends React.Component {
     }
   }
 
+
   static contextType = NotefulContext;
 
 
@@ -29,29 +30,27 @@ class NoteAddForm extends React.Component {
     this.setState({content}, () => {this.validateContent(content)});
   }
 
-  addNoteName(name) {
-    this.setState({name}, () => {this.validateName(name)});
+  addNoteName(note_title) {
+    this.setState({note_title}, () => {this.validateName(note_title)});
   }
 
-  addFolderId(folderId) {
+  addFolderId(folder) {
     this.setState({
-      folderId
+      folder
     })
   }
 
-  addModified(modified) {
+  addModified(date_published) {
     this.setState({
-      modified
+      date_published
     })
   }
-
-   
 
   handleNoteSubmit = e => {
     e.preventDefault();
-    const note = (({content, folderId, id, modified, name}) => ({content, folderId, id, modified, name}))(this.state);
+    const note = (({content, folder, id, date_published, note_title}) => ({content, folder, id, date_published, note_title}))(this.state);
 
-    fetch(`http://localhost:9090/notes`,{
+    fetch(`http://localhost:8000/notes`,{
         method: 'POST',
         body:JSON.stringify(note),
         headers: {
@@ -67,10 +66,10 @@ class NoteAddForm extends React.Component {
         .then(() => {
             this.setState({
                 content: '',
-                folderId: '',
-                modified: new Date(),
+                folder: parseInt(),
+                date_published: new Date(),
                 id: '',
-                name: '',
+                note_title: '',
             });
             this.context.addNote(note);
             this.props.history.push('/')
@@ -87,14 +86,14 @@ class NoteAddForm extends React.Component {
 
       fieldValue = fieldValue.trim();
       if(fieldValue.length === 0) {
-          fieldErrors.name = 'Note title is required';
+          fieldErrors.note_title = 'Note title is required';
           hasError = true;
       } else {
           if(fieldValue.length < 3) {
-              fieldErrors.name = 'Note title must be at least 3 characters long';
+              fieldErrors.note_title = 'Note title must be at least 3 characters long';
               hasError = true;
           } else {
-              fieldErrors.name = '';
+              fieldErrors.note_title = '';
               hasError = false;
           }
       }
@@ -135,9 +134,9 @@ class NoteAddForm extends React.Component {
       }, this.formValid );
 
     }
-
       render() {
         return ( 
+          
           <section className='add-note'>
             <h2>Create a note</h2>
             <form onSubmit={e => this.handleNoteSubmit(e)}> 
@@ -148,13 +147,13 @@ class NoteAddForm extends React.Component {
                 <select 
                   type='select' 
                   id='note-folder-input' 
-                  value={this.state.folderId} 
+                  value={this.state.folder} 
                   onChange={e => this.addFolderId(e.target.value)}
                   required
                   >
                   <option value=''>Choose Folder:</option>
                   {this.context.folders.map(folder =>
-                    <option key={folder.id} value={folder.id}>{folder.name}</option>
+                    <option key={folder.id} value={folder.id}>{folder.title}</option>
                     )}
                 </select>
               </div>
@@ -165,7 +164,7 @@ class NoteAddForm extends React.Component {
                 <input 
                   type='text' 
                   id='note-name-input' 
-                  value={this.state.name} 
+                  value={this.state.note_title} 
                   onChange={e => this.addNoteName(e.target.value)}
                   />
               </div>
