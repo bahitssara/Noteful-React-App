@@ -15,7 +15,7 @@ class NoteMain extends React.Component {
 
     static contextType = NotefulContext
 
-    deleteRedirect = noteId => {
+    deleteRedirect = id => {
         this.props.history.push('/')
     }
 
@@ -34,7 +34,7 @@ class NoteMain extends React.Component {
                         <Link to='/' id='go-back'><i className="fas fa-arrow-left"> Go back</i></Link>
                             <section className='note-main'>
                                 <NoteFormat
-                                    id={filteredNote.noteId}
+                                    id={filteredNote.id}
                                     note_title={filteredNote.note_title}
                                     date_published={filteredNote.date_published}
                                     onDeleteNote={this.deleteRedirect}

@@ -12,17 +12,17 @@ class NoteFormat extends React.Component {
       }
       
     static contextType = NotefulContext;
-
+    
     handleClickDelete = e => {
         e.preventDefault();
         const noteId= this.props.id
- 
         fetch(`http://localhost:8000/notes/${noteId}`,{
         method: 'DELETE',
         headers: {
             'content-type': 'application/json'
         },
     })
+
         .then(res => {
             if(!res.ok)
                 return res.json().then(e => Promise.reject(e))
@@ -32,14 +32,16 @@ class NoteFormat extends React.Component {
             this.context.deleteNote(noteId)
             this.props.onDeleteNote(noteId)
         })
+
         .catch(error => {
             console.error({error})
         })
     }
 
     render(){
+        console.log(this)
         const { note_title, id, date_published } = this.props
-        
+        console.log(this.context)
         return(
             <li className='note-format'>
             <h2 className='note-name'>

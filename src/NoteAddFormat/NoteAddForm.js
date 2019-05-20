@@ -9,7 +9,7 @@ class NoteAddForm extends React.Component {
     super(props)
     this.state = {
       content: '',
-      folder: parseInt(),
+      folder: '',
       id:'',
       date_published: new Date(),
       note_title:'',
@@ -66,7 +66,7 @@ class NoteAddForm extends React.Component {
         .then(() => {
             this.setState({
                 content: '',
-                folder: parseInt(),
+                folder: '',
                 date_published: new Date(),
                 id: '',
                 note_title: '',
