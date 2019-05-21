@@ -26,7 +26,6 @@ class Notes extends Component {
             date_published={note.date_published}
             />
         )
-        console.log(noteFormat)
         return(
             <div className='notes-container'>
                 <div className='notes'>

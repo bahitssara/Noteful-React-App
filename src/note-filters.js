@@ -4,6 +4,6 @@ export const findNote = (notes=[], id) =>
   export const getNotes = (notes=[], folderId) => (
     (!folderId)
       ? notes
-      : notes.filter(note => note.folderId === parseInt(folderId))
+      : notes.filter(note => note.folder === parseInt(folderId))
   )
   

@@ -7,26 +7,26 @@ class FolderAddForm extends React.Component {
         super(props)
         this.state = {
             id:'',
-            name: '',
+            title: '',
             nameValid: false,
             formValid: false,
             validationMessage: {
-                name: '',
+                title: '',
             }
         };
     }
 
     static contextType = NotefulContext;
 
-    addFolderName(name) {
-        this.setState({name}, () => {this.validateName(name)});
+    addFolderName(title) {
+        this.setState({title}, () => {this.validateName(title)});
     }
 
 
     handleFolderSubmit = e => {
         e.preventDefault();
-        const folder = (({id, name}) => ({id, name}))(this.state);
-        fetch(`http://localhost:9090/folders`,{
+        const folder = (({id, title}) => ({id, title}))(this.state);
+        fetch(`http://localhost:8000/folders`,{
         method: 'POST',
         body:JSON.stringify(folder),
         headers: {
@@ -42,7 +42,7 @@ class FolderAddForm extends React.Component {
         .then(() => {
             this.setState({
                 id: '',
-                name: '',
+                title: '',
             });
             this.context.addFolder(folder);
             this.props.history.push('/')
@@ -59,14 +59,14 @@ class FolderAddForm extends React.Component {
 
         fieldValue = fieldValue.trim();
         if(fieldValue.length === 0) {
-            fieldErrors.name = 'Folder name is required';
+            fieldErrors.title = 'Folder name is required';
             hasError = true;
         } else {
             if(fieldValue.length < 3) {
-                fieldErrors.name = 'Folder name must be at least 3 characters long';
+                fieldErrors.title = 'Folder name must be at least 3 characters long';
                 hasError = true;
             } else {
-                fieldErrors.name = '';
+                fieldErrors.title = '';
                 hasError = false;
             }
         }
@@ -91,8 +91,8 @@ class FolderAddForm extends React.Component {
                     <label htmlFor='add-folder-input'>
                         Folder Name
                     </label>
-                        <input type='text' id='add-folder-input' value={this.state.name} onChange={e => this.addFolderName(e.target.value)}/>
-                            <ValidationError hasError={!this.state.nameValid} message={this.state.validationMessage.name}/>
+                        <input type='text' id='add-folder-input' value={this.state.title} onChange={e => this.addFolderName(e.target.value)}/>
+                            <ValidationError hasError={!this.state.nameValid} message={this.state.validationMessage.title}/>
                     <button type='submit' disabled={!this.state.formValid}>
                         Add 
                     </button>

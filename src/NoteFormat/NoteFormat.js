@@ -39,9 +39,7 @@ class NoteFormat extends React.Component {
     }
 
     render(){
-        console.log(this)
         const { note_title, id, date_published } = this.props
-        console.log(this.context)
         return(
             <li className='note-format'>
             <h2 className='note-name'>
