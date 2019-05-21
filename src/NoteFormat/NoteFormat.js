@@ -31,12 +31,13 @@ class NoteFormat extends React.Component {
         .then(() => {
             this.context.deleteNote(noteId)
             this.props.onDeleteNote(noteId)
+            this.props.history.push()
         })
-
         .catch(error => {
             console.error({error})
         })
     }
+
 
     render(){
         const { note_title, id, date_published } = this.props
@@ -52,6 +53,12 @@ class NoteFormat extends React.Component {
                 type='button'
                 onClick={this.handleClickDelete}
                 >Remove Note</button>
+            <Link to={`/edit-notes/${id}`}>
+            <button 
+                className='delete-button'
+                type='button'
+                >Edit Note</button>
+                </Link>  
             <div className='note-edits'>
                 <p>Modified:</p>
                 <span className='date-modified'>

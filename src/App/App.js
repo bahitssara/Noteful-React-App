@@ -4,6 +4,7 @@ import Notes from '../Notes/Notes'
 import Folders from '../Folders/Folders';
 import FolderAddForm from '../FolderAddForm/FolderAddForm';
 import NoteAddForm from '../NoteAddFormat/NoteAddForm';
+import EditNote from '../EditNoteForm/EditNote'
 import './App.css'
 import NoteMain from '../NoteMain/NoteMain';
 import NotefulContext from '../NotefulContext'
@@ -71,6 +72,20 @@ class App extends Component {
       })
     }
 
+    handleEditNote = note => {
+      this.setState({
+        notes:
+        [...this.state.notes, note]
+      })
+    }
+
+    handleEditFolder = folder => {
+      this.setState({
+        folders: 
+        [...this.state.folders, folder]
+      })
+    }
+
   render() {
     const contextValue = {
       notes: this.state.notes,
@@ -78,7 +93,8 @@ class App extends Component {
       deleteNote: this.handleDeleteNote,
       addFolder: this.handleAddFolder,
       addNote: this.handleAddNote,
-      
+      editNote: this.handleEditNote,
+      editFolder: this.handleEditFolder
     }
 
 
@@ -130,6 +146,12 @@ class App extends Component {
                       path='/add-note' 
                       exact 
                       component={NoteAddForm}
+                    />
+
+                    <Route 
+                      path='/edit-notes/:noteId'
+                      exact
+                      component={EditNote}
                     />
             </ErrorBoundary>
           </Switch>
