@@ -5,6 +5,8 @@ import Folders from '../Folders/Folders';
 import FolderAddForm from '../FolderAddForm/FolderAddForm';
 import NoteAddForm from '../NoteAddFormat/NoteAddForm';
 import EditNote from '../EditNoteForm/EditNote'
+import EditFolder from '../EditFolderForm/EditFolder'
+import config from '../config'
 import './App.css'
 import NoteMain from '../NoteMain/NoteMain';
 import NotefulContext from '../NotefulContext'
@@ -22,10 +24,20 @@ class App extends Component {
 
   componentDidMount() {
     Promise.all([
-      fetch('http://localhost:8000/folders'),
-      fetch('http://localhost:8000/notes'),
-
-
+      fetch(config.API_ENDPOINT + '/folders', {
+        method: 'GET',
+        headers: {
+          'content-type': 'application/json',
+          'Authorization': `Bearer ${config.API_KEY}`
+        }
+      }),
+      fetch(config.API_ENDPOINT + '/notes', {
+        method: 'GET',
+        headers: {
+          'content-type': 'application/json',
+          'Authorization': `Bearer ${config.API_KEY}`
+        }
+      })
     ])
       .then(([folderRes, noteRes]) => {
         if(!folderRes.ok)
@@ -152,6 +164,12 @@ class App extends Component {
                       path='/edit-notes/:noteId'
                       exact
                       component={EditNote}
+                    />
+
+                    <Route 
+                      path='/edit-folder/:folderId'
+                      exact
+                      component={EditFolder}
                     />
             </ErrorBoundary>
           </Switch>

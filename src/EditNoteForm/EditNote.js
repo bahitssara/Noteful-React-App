@@ -2,6 +2,7 @@ import React from 'react'
 import NotefulContext from '../NotefulContext'
 import './EditNote.css'
 import { Link } from 'react-router-dom'
+import config from '../config'
 import ValidationError from '../ValidationError/ValidationError'
 
 
@@ -28,10 +29,11 @@ class NoteEditForm extends React.Component {
 
   componentDidMount() {
     const { noteId } = this.props.match.params
-    fetch(`http://localhost:8000/notes/${noteId}`,{
+    fetch(config.API_ENDPOINT + `/notes/${noteId}`,{
       method: 'GET',
         headers: {
-            'content-type': 'application/json'
+            'content-type': 'application/json',
+            'Authorization': `Bearer ${config.API_KEY}`
         },
     })
       .then(res => {
@@ -42,8 +44,6 @@ class NoteEditForm extends React.Component {
       })
       .then(responseData => {
         this.setState({
-          id: responseData.id,
-          folder: responseData.folder,
           note_title: responseData.note_title,
           content: responseData.content,
         })
@@ -63,12 +63,6 @@ class NoteEditForm extends React.Component {
     this.setState({note_title}, () => {this.validateName(note_title)});
   }
 
-  editFolderId(folder) {
-    this.setState({
-      folder
-    })
-  }
-
   editModified(date_published) {
     this.setState({
       date_published
@@ -77,37 +71,28 @@ class NoteEditForm extends React.Component {
 
   handleNoteEdit = e => {
     e.preventDefault();
-    const note = (({content, folder, id, date_published, note_title}) => ({content, folder, id, date_published, note_title}))(this.state);
+    const {content, id, date_published, note_title} = this.state;
+    const updatedNote = { content, id, date_published, note_title };
     const { noteId } = this.props.match.params
-    fetch(`http://localhost:8000/notes/${noteId}`,{
+    fetch(config.API_ENDPOINT + `/notes/${noteId}`,{
         method: 'PATCH',
-        body:JSON.stringify(note),
+        body:JSON.stringify(updatedNote),
         headers: {
-            'content-type': 'application/json'
-        },
+            'content-type': 'application/json',
+            'Authorization': `Bearer ${config.API_KEY}`,
+        }
     })
-        .then(res => {
-            if(!res.ok){
-                throw new Error('Something went wrong please try again later');
-             }
-              return res.json();
-        })
+      .then(res => {
+        if (!res.ok) return res.json().then(error => Promise.reject(error));
+      })
         .then(() => {
-            this.setState({
-                content: '',
-                folder: '',
-                date_published: new Date(),
-                id: '',
-                note_title: '',
-            });
-            this.context.handleEditNote(note);
-            this.props.history.push('/')
-
-        })
+            this.context.editNote(updatedNote);
+            this.props.history.push('/');
+          })
         .catch(error => {
-            console.error({error})
-        })
-  }
+            console.error({error});
+        });
+  };
 
   validateName(fieldValue) {
       const fieldErrors = {...this.state.validationMessage}

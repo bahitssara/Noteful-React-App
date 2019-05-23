@@ -23,14 +23,14 @@ class NoteMain extends React.Component {
             const { notes }= this.context
             const { noteId } = this.props.match.params
             const filteredNote = findNote(notes, noteId) || { content: ''}
-            const findFolders = this.context.folders.find(folder => {
-                return folder.id === filteredNote.folder            
-             })
+            // const findFolders = this.context.folders.find(folder => {
+            //     return folder.id === filteredNote.folder            
+            //  })
             
             
             return(
                 <div className='note-main-container'>
-                    {<h2 className='folder-name-main'>{findFolders.title}</h2>}
+                    {/* {<h2 className='folder-name-main'>{findFolders.title}</h2>} */}
                         <Link to='/' id='go-back'><i className="fas fa-arrow-left"> Go back</i></Link>
                             <section className='note-main'>
                                 <NoteFormat

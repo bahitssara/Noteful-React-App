@@ -1,5 +1,6 @@
 import React from 'react'
 import NotefulContext from '../NotefulContext'
+import config from '../config'
 import './NoteAddForm.css'
 import ValidationError from '../ValidationError/ValidationError'
 
@@ -47,14 +48,16 @@ class NoteAddForm extends React.Component {
   }
 
   handleNoteSubmit = e => {
+    console.log(this.props)
     e.preventDefault();
     const note = (({content, folder, id, date_published, note_title}) => ({content, folder, id, date_published, note_title}))(this.state);
 
-    fetch(`http://localhost:8000/notes`,{
+    fetch(config.API_ENDPOINT + `/notes`,{
         method: 'POST',
         body:JSON.stringify(note),
         headers: {
-            'content-type': 'application/json'
+            'content-type': 'application/json',
+            'Authorization': `Bearer ${config.API_KEY}`
         },
     })
         .then(res => {
@@ -73,7 +76,6 @@ class NoteAddForm extends React.Component {
             });
             this.context.addNote(note);
             this.props.history.push('/')
-
         })
         .catch(error => {
             console.error({error})
