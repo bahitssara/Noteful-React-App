@@ -27,6 +27,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "dotenv": "^8.0.0",
     "serve": "^11.0.0"
   }
 }
