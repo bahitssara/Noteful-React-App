@@ -12,8 +12,6 @@ import NoteMain from '../NoteMain/NoteMain';
 import NotefulContext from '../NotefulContext'
 import ErrorBoundary from '../ErrorBoundary/ErrorBoundary'
 
-
-
 class App extends Component {
   
   state = {
@@ -122,13 +120,13 @@ class App extends Component {
           <Switch>
             <ErrorBoundary>
                     <Route 
-                      exact
                       path='/'  
+                      exact
                       component={Folders}
                     />
                     <Route
-                      exact
                       path='/'
+                      exact
                       component={Notes}
                     />
 

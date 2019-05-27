@@ -1,6 +1,6 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
-import { format } from 'date-fns';
+import { Link } from 'react-router-dom'
+import { format } from 'date-fns'
 import './NoteFormat.css'
 import NotefulContext from '../NotefulContext'
 import PropTypes from 'prop-types'
@@ -62,7 +62,6 @@ class NoteFormat extends React.Component {
             </div>
         </li>
     )}
-
 }
 
 NoteFormat.propTypes = {
@@ -72,5 +71,5 @@ NoteFormat.propTypes = {
 }
 
 
-export default NoteFormat
+export default NoteFormat;
 
